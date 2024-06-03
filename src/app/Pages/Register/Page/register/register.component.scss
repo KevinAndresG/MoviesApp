@@ -22,6 +22,7 @@
         }
       }
       & > input {
+        caret-color: #077996;
         &.input-selected {
           &::placeholder {
             translate: 0 -50px;
@@ -30,7 +31,8 @@
           }
         }
       }
-      button {
+      button,
+      a {
         box-shadow: 0 5px 10px rgba(8, 8, 8, 0.9);
         transition: box-shadow 0.2s, scale 0.2s, background-color 0.2s;
         &:hover {

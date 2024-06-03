@@ -1,0 +1,27 @@
+<div [class]="classesType2()">
+  <h1 class="transi title font-extrabold w-full text-center text-white">
+    {{ title() }}
+  </h1>
+  <p class="description font-semibold w-full text-center text-white">
+    {{ description() }}
+  </p>
+  @if (controled()) {
+  <div class="buttons flex gap-2 absolute bottom-2">
+    @if (cancelBtn()) {
+    <button
+      class="cancel-button bg-white p-2 rounded-md text-black font-bold"
+      (click)="cancel()"
+    >
+      Cancel
+    </button>
+    } @if (acceptBtn()) {
+    <button
+      class="accept-button bg-[#0891b2] p-2 rounded-md text-white font-bold text-center"
+      (click)="accept()"
+    >
+      Accept
+    </button>
+    }
+  </div>
+  }
+</div>

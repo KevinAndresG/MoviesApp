@@ -1,0 +1,13 @@
+.alert {
+  z-index: 100;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  width: 400px;
+  overflow: hidden;
+  min-height: 80px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,9 +1,23 @@
 <div class="register-container w-screen h-screen overflow-hidden">
   <app-header-welcome />
+  @if (alertInfo().showAlert) {
+  <app-alert
+    (changeShowAlert)="alertInfo().showAlert = $event"
+    [title]="alertInfo().title"
+    [description]="alertInfo().description"
+    [type]="alertInfo().type"
+    [controled]="alertInfo().controled"
+    [cancelBtn]="alertInfo().cancelBtn"
+    [acceptBtn]="alertInfo().confirmBtn"
+    [delay]="alertInfo().delay"
+    [y]="alertInfo().y"
+    [x]="alertInfo().x"
+  />
+  }
   <main class="w-screen h-screen flex flex-col items-center pt-20">
     <form
       (submit)="registerUser()"
-      class="register-form relative bg-black bg-opacity-70 rounded-lg backdrop-blur-sm shadow-xl shadow-black px-20 py-28 flex flex-col gap-2 justify-center items-center [&>input]:text-white [&>input]:bg-black [&>input]:bg-opacity-70 [&>input]:border-[1px] [&>input]:border-gray-500 [&>input]:py-2 [&>input]:px-2 [&>input]:font-bold [&>input]:tracking-wide [&>input]:outline-none [&>input]:rounded-md"
+      class="register-form relative bg-black bg-opacity-70 rounded-lg backdrop-blur-sm shadow-xl shadow-black px-20 py-28 flex flex-col gap-2 justify-center items-center [&>input]:text-white [&>input]:bg-black [&>input]:bg-opacity-70 [&>input]:border-[1px] [&>input]:border-[#003644] [&>input]:py-2 [&>input]:px-2 [&>input]:font-bold [&>input]:tracking-wide [&>input]:outline-none [&>input]:rounded-md"
       action=""
     >
       <h2 class="text-white absolute top-10 text-3xl font-bold">
