@@ -1,0 +1,21 @@
+.login-container {
+  box-shadow: inset 0 0 100px 400px rgba(0, 0, 0, 0.6);
+  background-image: url("../../../../../../public/welcome-bg.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  .login-form {
+    button {
+      box-shadow: 0 5px 10px rgba(8, 8, 8, 0.9);
+      transition: box-shadow 0.2s, scale 0.2s, background-color 0.2s;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 3px 5px rgba(8, 8, 8, 0.8);
+        scale: 0.99;
+        background: #077996;
+        &.create-button {
+          background: rgb(233, 233, 233);
+        }
+      }
+    }
+  }
+}

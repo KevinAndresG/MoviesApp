@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div
+  class="login-container w-screen h-screen overflow-hidden top-0 bottom-0 left-0 right-0"
+>
+  <app-header-welcome />
+  <form
+    class="login-form relative w-screen h-screen bg-black bg-opacity-70 rounded-lg backdrop-blur-sm shadow-xl shadow-black px-20 py-28 flex flex-col gap-2 justify-center items-center [&>input]:text-white [&>input]:bg-black [&>input]:bg-opacity-70 [&>input]:border-[1px] [&>input]:border-gray-500 [&>input]:py-2 [&>input]:px-2 [&>input]:font-bold [&>input]:tracking-wide [&>input]:outline-none [&>input]:rounded-md"
+    action=""
+  >
+    <input
+      name="email"
+      id="Email"
+      [(ngModel)]="user().email"
+      class="border-2 border-gray-400 outline-none"
+      type="email"
+      placeholder="email"
+    />
+    <input
+      name="password"
+      id="Password"
+      [(ngModel)]="user().password"
+      class="border-2 border-gray-400 outline-none"
+      type="password"
+      placeholder="password"
+    />
+    <button
+      class="login-button bg-[#0891b2] p-2 rounded-md text-white font-bold text-center"
+      type="button"
+      (click)="getUserList()"
+    >
+      Login
+    </button>
+  </form>
+</div>

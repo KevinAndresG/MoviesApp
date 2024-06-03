@@ -1,0 +1,48 @@
+.register-container {
+  box-shadow: inset 0 0 100px 400px rgba(0, 0, 0, 0.6);
+  background-image: url("../../../../../../public/welcome-bg.jpeg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  main {
+    .register-form {
+      & > label {
+        font-weight: bold;
+        color: rgb(156 163 175);
+        text-align-last: left;
+        width: 100%;
+        translate: 0 170%;
+        margin-left: 9%;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.5s ease, translate 0.5s ease;
+        &.go-up {
+          opacity: 1;
+          translate: 0 10%;
+          transition: opacity 0.3s ease, translate 0.3s ease;
+        }
+      }
+      & > input {
+        &.input-selected {
+          &::placeholder {
+            translate: 0 -50px;
+            text-align: left;
+            transition: translate 0.3s ease;
+          }
+        }
+      }
+      button {
+        box-shadow: 0 5px 10px rgba(8, 8, 8, 0.9);
+        transition: box-shadow 0.2s, scale 0.2s, background-color 0.2s;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 3px 5px rgba(8, 8, 8, 0.8);
+          scale: 0.99;
+          background: #077996;
+          &.create-button {
+            background: rgb(233, 233, 233);
+          }
+        }
+      }
+    }
+  }
+}

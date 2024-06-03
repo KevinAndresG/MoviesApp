@@ -1,1 +1,98 @@
-<p>register works!</p>
+<div class="register-container w-screen h-screen overflow-hidden">
+  <app-header-welcome />
+  <main class="w-screen h-screen flex flex-col items-center pt-20">
+    <form
+      (submit)="registerUser()"
+      class="register-form relative bg-black bg-opacity-70 rounded-lg backdrop-blur-sm shadow-xl shadow-black px-20 py-28 flex flex-col gap-2 justify-center items-center [&>input]:text-white [&>input]:bg-black [&>input]:bg-opacity-70 [&>input]:border-[1px] [&>input]:border-gray-500 [&>input]:py-2 [&>input]:px-2 [&>input]:font-bold [&>input]:tracking-wide [&>input]:outline-none [&>input]:rounded-md"
+      action=""
+    >
+      <h2 class="text-white absolute top-10 text-3xl font-bold">
+        Crea una cuenta
+      </h2>
+      <label [class]="{ 'go-up': inputSelected() === 'Name' }" for="Name"
+        >Name</label
+      >
+      <input
+        required
+        [(ngModel)]="userToCreate().name"
+        autocomplete="off"
+        (click)="inputClicked('Name')"
+        (blur)="goDown()"
+        id="Name"
+        name="Name"
+        type="text"
+        placeholder="Name"
+        [class]="{
+          'input-selected': inputSelected() === 'Name',
+        }"
+      />
+      <label [class]="{ 'go-up': inputSelected() === 'email' }" for="Email"
+        >Email</label
+      >
+      <input
+        required
+        [(ngModel)]="userToCreate().email"
+        autocomplete="off"
+        (click)="inputClicked('email')"
+        (blur)="goDown()"
+        id="Email"
+        name="Email"
+        type="email"
+        placeholder="Email"
+        [class]="{
+          'input-selected': inputSelected() === 'email',
+        }"
+      />
+      <label [class]="{ 'go-up': inputSelected() === 'pass' }" for="Password"
+        >Password</label
+      >
+      <input
+        required
+        [(ngModel)]="userToCreate().password"
+        autocomplete="off"
+        (click)="inputClicked('pass')"
+        (blur)="goDown()"
+        id="Password"
+        name="Password"
+        type="password"
+        placeholder="Password"
+        [class]="{
+          'input-selected': inputSelected() === 'pass',
+        }"
+      />
+      <label
+        [class]="{ 'go-up': inputSelected() === 'conf' }"
+        for="ConfirmPassword"
+        >Confirm Password</label
+      >
+      <input
+        required
+        [(ngModel)]="userToCreate().conf"
+        autocomplete="off"
+        (click)="inputClicked('conf')"
+        (blur)="goDown()"
+        id="ConfirmPassword"
+        name="ConfirmPassword"
+        type="password"
+        placeholder="Confirm Password"
+        [class]="{
+          'input-selected': inputSelected() === 'conf',
+        }"
+      />
+      <div class="flex w-full flex-col gap-4 mt-10 [&>button]:w-full">
+        <button
+          type="submit"
+          class="create-button bg-white p-2 rounded-md text-black font-bold"
+        >
+          Crear Cuenta
+        </button>
+        <a
+          routerLink="/login"
+          class="login-button bg-[#0891b2] p-2 rounded-md text-white font-bold text-center"
+        >
+          Inicar Sesión
+        </a>
+      </div>
+    </form>
+  </main>
+</div>
