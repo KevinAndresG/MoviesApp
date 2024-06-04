@@ -1,7 +1,7 @@
 export enum AlertType {
   Success = 'Success',
   Info = 'Info',
-  Center = 'Warning',
+  Warning = 'Warning',
   Error = 'Error',
 }
 export enum AlertPositionX {

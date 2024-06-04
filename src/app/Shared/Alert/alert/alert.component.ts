@@ -28,8 +28,7 @@ export class AlertComponent implements OnChanges {
     Warning: 'yellow-500',
     Info: 'blue-500',
   };
-  toCero = signal<number>(100);
-  type = input<AlertType>(AlertType.Success);
+  type = input.required<AlertType>();
   controled = input.required<boolean>();
   title = input<string>('');
   description = input<string>('');
@@ -43,20 +42,18 @@ export class AlertComponent implements OnChanges {
   classesType = signal<any>({});
   classesType2 = signal<any>('');
   ngOnChanges(changes: SimpleChanges) {
+    console.log(this.type());
     if (changes['type']) {
-      this.toCero.set(0);
       this.classesType2.set(
-        `alert after:absolute block after:transition-width after:duration-[${this.delay()}s] :after:content-[''] after:bottom-0 after:left-0 after:w-[${this.toCero()}%] after:ease after:h-[2%] after:bg-[#ffffff] bg-${
-          this.typeColors[this.type()]
-        } ${this.controled() ? '!min-h-[130px]' : ''} ${
-          this.y().toLowerCase() === 'top' ? 'top-3' : ''
-        } ${this.y().toLowerCase() === 'middle' ? 'top-[50%]' : ''} ${
-          this.y().toLowerCase() === 'bottom' ? 'bottom-3' : ''
-        } ${this.x().toLowerCase() === 'left' ? 'left-3' : ''} ${
-          this.x().toLowerCase() === 'right' ? 'right-3' : ''
-        } ${this.x().toLowerCase() === 'center' ? 'left-[50%]' : ''} ${
-          this.x().toLowerCase() === 'center' ? 'translate-x-[-50%]' : ''
-        }`
+        `alert bg-${this.typeColors[this.type()]} ${
+          this.controled() ? '!min-h-[130px]' : ''
+        } ${this.y().toLowerCase() === 'top' ? 'top-3' : ''} ${
+          this.y().toLowerCase() === 'middle' ? 'top-[50%]' : ''
+        } ${this.y().toLowerCase() === 'bottom' ? 'bottom-3' : ''} ${
+          this.x().toLowerCase() === 'left' ? 'left-3' : ''
+        } ${this.x().toLowerCase() === 'right' ? 'right-3' : ''} ${
+          this.x().toLowerCase() === 'center' ? 'left-[50%]' : ''
+        } ${this.x().toLowerCase() === 'center' ? 'translate-x-[-50%]' : ''}`
       );
       setTimeout(() => {
         this.changeShowAlert.emit(false);
