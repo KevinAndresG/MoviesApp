@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { ProtectedRoutesService } from './Services/ProtectedRoutes/protected-routes.service';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,7 @@ export const routes: Routes = [
       import('./Pages/Home/Page/home/home.component').then(
         (m) => m.HomeComponent
       ),
+    // canActivate: [ProtectedRoutesService],
   },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
 ];

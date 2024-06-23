@@ -1,8 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { User, UserLogin } from '../../../../Models/user.model';
+import { UserType, UserTypeValidation } from '../../../../Models/user.model';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HeaderWelcomeComponent } from '../../../../Shared/HeaderWelcome/header-welcome/header-welcome.component';
+import { RegisterService } from '../../../../Services/Users/user.service';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +13,62 @@ import { HeaderWelcomeComponent } from '../../../../Shared/HeaderWelcome/header-
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  constructor(private router: Router) {}
-  user = signal<UserLogin>({ email: '', password: '' });
-  getUserList() {
-    if ('user' in localStorage) {
-      let usersList: User[] = JSON.parse(localStorage.getItem('user')!);
-      for (const [i, user] of Object.values(usersList).entries()) {
-        if (
-          user.email === this.user().email &&
-          user.password === this.user().password
-        ) {
-          this.router.navigate(['/home']);
-          break;
-        }
-        if (i === Object.keys(usersList).length - 1) {
-          alert('Email or password is incorrect');
-        }
-      }
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
+  user = signal<UserType>({ Email: '', Password: '' });
+  showError = signal({ Email: false, Password: false, Message: '' });
+
+  handleError(errorType: string) {
+    const errorMap: Record<string, UserTypeValidation> = {
+      'auth/invalid-email': {
+        Email: true,
+        Password: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/user-not-found': {
+        Email: true,
+        Password: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/wrong-password': {
+        Password: true,
+        Email: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/email-already-in-use': {
+        Email: true,
+        Password: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/weak-password': {
+        Password: true,
+        Email: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/invalid-credential': {
+        Password: true,
+        Email: false,
+        Message: errorType.split('/')[1],
+      },
+      'auth/missing-password': {
+        Password: true,
+        Email: false,
+        Message: errorType.split('/')[1],
+      },
+    };
+    this.showError.set(errorMap[errorType]);
+  }
+  async login() {
+    const response = await this.registerService.Auth(this.user());
+    if (response.accessToken) {
+      this.user.set({ Email: '', Password: '' });
+      localStorage.setItem('currentUser', JSON.stringify(response));
+      localStorage.setItem('token', JSON.stringify(response.accessToken));
+      this.router.navigate(['/home']);
+    } else {
+      this.handleError(response);
     }
   }
 }

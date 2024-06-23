@@ -1,9 +1,15 @@
-export interface User {
-  name: string;
-  email: string;
-  password: string;
+export interface UserType {
+  Email: string;
+  Password: string;
 }
-export interface UserLogin {
-  email: string;
-  password: string;
+
+export interface UserTypeValidation {
+  Email: boolean;
+  Password: boolean;
+  Message: string;
+}
+
+export interface UserRecoverValidation {
+  Email: boolean;
+  Message: string;
 }

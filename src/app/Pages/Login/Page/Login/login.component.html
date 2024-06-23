@@ -9,23 +9,39 @@
     <input
       name="email"
       id="Email"
-      [(ngModel)]="user().email"
+      [(ngModel)]="user().Email"
       class="border-2 border-gray-400 outline-none"
       type="email"
       placeholder="email"
+      [style]="{
+        border: showError().Email
+          ? '1px solid #ff0000b0'
+          : '1px solid rgb(0 54 68)'
+      }"
     />
+    @if (showError().Email) {
+    <span class="text-white">{{ showError().Message }}</span>
+    }
     <input
       name="password"
       id="Password"
-      [(ngModel)]="user().password"
+      [(ngModel)]="user().Password"
       class="border-2 border-gray-400 outline-none"
       type="password"
       placeholder="password"
+      [style]="{
+        border: showError().Password
+          ? '1px solid #ff0000b0'
+          : '1px solid rgb(0 54 68)'
+      }"
     />
+    @if (showError().Password) {
+    <span class="text-white">{{ showError().Message }}</span>
+    }
     <button
       class="login-button bg-[#0891b2] p-2 rounded-md text-white font-bold text-center"
       type="button"
-      (click)="getUserList()"
+      (click)="login()"
     >
       Login
     </button>
